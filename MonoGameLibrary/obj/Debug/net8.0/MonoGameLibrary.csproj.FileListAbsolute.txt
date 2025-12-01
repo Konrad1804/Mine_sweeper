@@ -1,0 +1,13 @@
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.csproj.AssemblyReference.cache
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.AssemblyInfoInputs.cache
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.AssemblyInfo.cs
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.csproj.CoreCompileInputs.cache
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.sourcelink.json
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.deps.json
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.dll
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.pdb
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.dll
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\refint\MonoGameLibrary.dll
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.pdb
+C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\ref\MonoGameLibrary.dll
