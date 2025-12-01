@@ -1,0 +1,17 @@
+﻿.vs/
+bin/
+obj/
+!.vs/.gitignore
+!.vs/Microsoft.VisualStudio.Services.8920.ActiveAuth
+!.vs/Microsoft.VisualStudio.Services.8920.ActiveAuth.repo
+!.vs/SolutionName.vssscc
+!.vs/SolutionName.vsscc.extra
+!.vs/SolutionName.vssscc
+!.vs/SolutionName.vsscc.extra
+!.vs/ProjectName.csproj.vspscc
+!.vs/ProjectName.csproj.vssscc
+!.vs/ProjectName.csproj.vsscc.extra
+
+# Ignore Visual Studio FileContentIndex (verhindert Permission-Denied beim Hinzufügen)
+.vs/**/FileContentIndex/
+.vs/**/FileContentIndex/*
