@@ -1,19 +1,16 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGameLibrary;
 
 namespace Mine_sweeper
 {
-    public class Game1 : Game
+    public class Game1 : Core
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-
-        public Game1()
+        
+        public Game1(): base("Mine sweeper", 1280, 720, false)
         {
-            _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            
         }
 
         protected override void Initialize()
@@ -23,12 +20,13 @@ namespace Mine_sweeper
             base.Initialize();
         }
 
-        protected override void LoadContent()
+       protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            base.LoadContent();
             // TODO: use this.Content to load your game content here
         }
+
+           
 
         protected override void Update(GameTime gameTime)
         {
@@ -42,7 +40,7 @@ namespace Mine_sweeper
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Aqua);
 
             // TODO: Add your drawing code here
 

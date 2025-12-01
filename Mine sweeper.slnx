@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Mine sweeper/Mine sweeper.csproj" />
+  <Project Path="MonoGameLibrary/MonoGameLibrary.csproj" Id="be28f2e1-1777-42b6-bf07-d13c77a17d94" />
 </Solution>
