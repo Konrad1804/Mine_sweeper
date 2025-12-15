@@ -11,3 +11,16 @@ C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoG
 C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\refint\MonoGameLibrary.dll
 C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.pdb
 C:\Users\konrad\source\repos\Mine sweeper\MonoGameLibrary\obj\Debug\net8.0\ref\MonoGameLibrary.dll
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.deps.json
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.dll
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\bin\Debug\net8.0\MonoGameLibrary.pdb
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.csproj.AssemblyReference.cache
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.AssemblyInfoInputs.cache
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.AssemblyInfo.cs
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.sourcelink.json
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.dll
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\refint\MonoGameLibrary.dll
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\MonoGameLibrary.pdb
+C:\Users\Konrad.Jaeger\source\repos\Konrad1804\Mine_sweeper\MonoGameLibrary\obj\Debug\net8.0\ref\MonoGameLibrary.dll
