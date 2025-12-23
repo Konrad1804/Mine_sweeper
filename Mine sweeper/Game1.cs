@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 using MonoGameLibrary;
 using MonoGameLibrary.Graphics;
 using MonoGameLibrary.Input;
@@ -22,6 +24,23 @@ namespace Mine_sweeper
         private Vector2 _batPosition;
 
         private Vector2 _batVelocity;
+        // Defines the tilemap to draw.
+        private Tilemap _tilemap;
+
+        // Defines the bounds of the room that the slime and bat are contained within.
+        private Rectangle _roomBounds;
+
+        private SoundEffect _bounceSoundEffect;
+
+        private SoundEffect _collectSoundEffect;
+
+        private Song _themeSong;
+
+        private SpriteFont _font;
+
+        private int _score;
+        private Vector2 _scoreTextPosition;
+        private Vector2 _scoreTextOrigin;
 
         public Game1(): base("Mine sweeper", 1280, 720, false)
         {
@@ -31,24 +50,59 @@ namespace Mine_sweeper
         protected override void Initialize()
         {
             base.Initialize();
+            Rectangle screenBounds = GraphicsDevice.PresentationParameters.Bounds;
+
+            _roomBounds = new Rectangle(
+                 (int)_tilemap.TileWidth,
+                 (int)_tilemap.TileHeight,
+                 screenBounds.Width - (int)_tilemap.TileWidth * 2,
+                 screenBounds.Height - (int)_tilemap.TileHeight * 2
+             );
+
+            // Initial slime position will be the center tile of the tile map.
+            int centerRow = _tilemap.Rows / 2;
+            int centerColumn = _tilemap.Columns / 2;
+            _slimePosition = new Vector2(centerColumn * _tilemap.TileWidth, centerRow * _tilemap.TileHeight);
+
+            // Initial bat position will be in the top left corner of the room
+            _batPosition = new Vector2(_roomBounds.Left, _roomBounds.Top);
 
             // Do not access _slime here — LoadContent runs after Initialize.
             AssignRandomBatVelocity();
+
+            Audio.PlaySong(_themeSong);
+
+            _scoreTextPosition = new Vector2(_roomBounds.Left, _tilemap.TileHeight * 0.5f);
+            float scoreTextYOrigin = _font.MeasureString("Score").Y * 0.5f;
+            _scoreTextOrigin = new Vector2(0, scoreTextYOrigin);
         }
 
        protected override void LoadContent()
         {
-           TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
+            // Create the texture atlas from the XML configuration file.
+            TextureAtlas atlas = TextureAtlas.FromFile(Content, "images/atlas-definition.xml");
 
+            // Create the slime animated sprite from the atlas.
             _slime = atlas.CreateAnimatedSprite("slime-animation");
             _slime.Scale = new Vector2(4.0f, 4.0f);
 
+            // Create the bat animated sprite from the atlas.
             _bat = atlas.CreateAnimatedSprite("bat-animation");
             _bat.Scale = new Vector2(4.0f, 4.0f);
 
-            // Initialize bat position now that sprites exist so the first draw
-            // places the bat where you originally intended.
-            _batPosition = new Vector2(_slime.Width + 10, 0);
+            // Create the tilemap from the XML configuration file.
+            _tilemap = Tilemap.FromFile(Content, "images/tilemap-definitio.xml");
+            _tilemap.Scale = new Vector2(4.0f, 4.0f);
+
+            // Load the bounce sound effect.
+            _bounceSoundEffect = Content.Load<SoundEffect>("audio/bounce");
+
+            // Load the collect sound effect.
+            _collectSoundEffect = Content.Load<SoundEffect>("audio/collect");
+
+            // Load the background theme music.
+            _themeSong = Content.Load<Song>("audio/theme");
+            _font = Content.Load<SpriteFont>("fonts/04B_30");
         }
 
         protected override void Update(GameTime gameTime)
@@ -75,22 +129,22 @@ namespace Mine_sweeper
                 (int)(_slimePosition.Y + (_slime.Height * 0.5f)),
                 (int)(_slime.Width * 0.5f)
             );
-            if (slimeBounds.Left < screenBounds.Left)
+            if (slimeBounds.Left < _roomBounds.Left)
             {
-                _slimePosition.X = screenBounds.Left;
+                _slimePosition.X = _roomBounds.Left;
             }
-            else if (slimeBounds.Right > screenBounds.Right)
+            else if (slimeBounds.Right > _roomBounds.Right)
             {
-                _slimePosition.X = screenBounds.Right - _slime.Width;
+                _slimePosition.X = _roomBounds.Right - _slime.Width;
             }
 
-            if (slimeBounds.Top < screenBounds.Top)
+            if (slimeBounds.Top < _roomBounds.Top)
             {
-                _slimePosition.Y = screenBounds.Top;
+                _slimePosition.Y = _roomBounds.Top;
             }
-            else if (slimeBounds.Bottom > screenBounds.Bottom)
+            else if (slimeBounds.Bottom > _roomBounds.Bottom)
             {
-                _slimePosition.Y = screenBounds.Bottom - _slime.Height;
+                _slimePosition.Y = _roomBounds.Bottom - _slime.Height;
             }
             Vector2 newBatPosition = _batPosition + _batVelocity;
 
@@ -103,29 +157,26 @@ namespace Mine_sweeper
 
             Vector2 normal = Vector2.Zero;
 
-            // Use distance based checks to determine if the bat is within the
-            // bounds of the game screen, and if it is outside that screen edge,
-            // reflect it about the screen edge normal.
-            if (batBounds.Left < screenBounds.Left)
+            if (batBounds.Left < _roomBounds.Left)
             {
                 normal.X = Vector2.UnitX.X;
-                newBatPosition.X = screenBounds.Left;
+                newBatPosition.X = _roomBounds.Left;
             }
-            else if (batBounds.Right > screenBounds.Right)
+            else if (batBounds.Right > _roomBounds.Right)
             {
                 normal.X = -Vector2.UnitX.X;
-                newBatPosition.X = screenBounds.Right - _bat.Width;
+                newBatPosition.X = _roomBounds.Right - _bat.Width;
             }
 
-            if (batBounds.Top < screenBounds.Top)
+            if (batBounds.Top < _roomBounds.Top)
             {
                 normal.Y = Vector2.UnitY.Y;
-                newBatPosition.Y = screenBounds.Top;
+                newBatPosition.Y = _roomBounds.Top;
             }
-            else if (batBounds.Bottom > screenBounds.Bottom)
+            else if (batBounds.Bottom > _roomBounds.Bottom)
             {
                 normal.Y = -Vector2.UnitY.Y;
-                newBatPosition.Y = screenBounds.Bottom - _bat.Height;
+                newBatPosition.Y = _roomBounds.Bottom - _bat.Height;
             }
 
             // If the normal is anything but Vector2.Zero, this means the bat had
@@ -135,6 +186,8 @@ namespace Mine_sweeper
             {
                 normal.Normalize();
                 _batVelocity = Vector2.Reflect(_batVelocity, normal);
+
+                Audio.PlaySoundEffect(_bounceSoundEffect);
             }
 
             _batPosition = newBatPosition;
@@ -143,12 +196,8 @@ namespace Mine_sweeper
             {
                 // Divide the width  and height of the screen into equal columns and
                 // rows based on the width and height of the bat.
-                int totalColumns = GraphicsDevice.PresentationParameters.BackBufferWidth / (int)_bat.Width;
-                int totalRows = GraphicsDevice.PresentationParameters.BackBufferHeight / (int)_bat.Height;
-
-                // Choose a random row and column based on the total number of each
-                int column = Random.Shared.Next(0, totalColumns);
-                int row = Random.Shared.Next(0, totalRows);
+                int column = Random.Shared.Next(1, _tilemap.Columns - 1);
+                int row = Random.Shared.Next(1, _tilemap.Rows - 1); ;
 
                 // Change the bat position by setting the x and y values equal to
                 // the column and row multiplied by the width and height.
@@ -156,6 +205,8 @@ namespace Mine_sweeper
 
                 // Assign a new random velocity to the bat
                 AssignRandomBatVelocity();
+                Audio.PlaySoundEffect(_collectSoundEffect);
+                _score += 100;
             }
             base.Update(gameTime);
         }
@@ -207,10 +258,26 @@ namespace Mine_sweeper
             {
                 _slimePosition.X += speed;
             }
+            // If the M key is pressed, toggle mute state for audio.
+            if (Input.Keyboard.WasKeyJustPressed(Keys.M))
+            {
+                Audio.ToggleMute();
+            }
+
+            // If the + button is pressed, increase the volume.
+            if (Input.Keyboard.WasKeyJustPressed(Keys.OemPlus))
+            {
+                Audio.SongVolume += 0.1f;
+                Audio.SoundEffectVolume += 0.1f;
+            }
+
+            // If the - button was pressed, decrease the volume.
+            if (Input.Keyboard.WasKeyJustPressed(Keys.OemMinus))
+            {
+                Audio.SongVolume -= 0.1f;
+                Audio.SoundEffectVolume -= 0.1f;
+            }
         }
-
-
-
         private void CheckGamePadInput()
         {
             GamePadInfo gamePadOne = Input.GamePads[(int)PlayerIndex.One];
@@ -271,11 +338,24 @@ namespace Mine_sweeper
             // TODO: Add your drawing code here
             SpriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
+            _tilemap.Draw(SpriteBatch);
+
             _slime.Draw(SpriteBatch, _slimePosition);
 
             // Draw only once at the computed bat position.
             _bat.Draw(SpriteBatch, _batPosition);
 
+            SpriteBatch.DrawString(
+            _font,              // spriteFont
+            $"Score: {_score}", // text
+            _scoreTextPosition, // position
+            Color.White,        // color
+            0.0f,               // rotation
+            _scoreTextOrigin,   // origin
+            1.0f,               // scale
+            SpriteEffects.None, // effects
+            0.0f                // layerDepth
+            );
             SpriteBatch.End();
 
             base.Draw(gameTime);
