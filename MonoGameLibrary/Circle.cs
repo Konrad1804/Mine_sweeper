@@ -5,7 +5,7 @@ namespace MonoGameLibrary
 {
     public readonly struct Circle : IEquatable<Circle>
     {
-        private static readonly Circle s_empty = new Circle();
+        private static readonly Circle s_empty = new();
 
         public readonly int X;
 
@@ -13,7 +13,7 @@ namespace MonoGameLibrary
 
         public readonly int Radius;
 
-        public readonly Point Location => new Point(X, Y);
+        public readonly Point Location => new(X, Y);
 
         public static Circle Empty => s_empty;
 
