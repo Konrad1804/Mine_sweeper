@@ -1,9 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonoGameLibrary.Graphics
 {
@@ -19,8 +15,8 @@ namespace MonoGameLibrary.Graphics
             set
             {
                 _animation = value;
-               Region = _animation.Frames[0];
-               
+                Region = _animation.Frames[0];
+
             }
         }
 

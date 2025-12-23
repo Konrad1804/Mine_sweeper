@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameLibrary.Input
@@ -13,7 +8,7 @@ namespace MonoGameLibrary.Input
         public MouseState PreviousState { get; private set; }
         public MouseState CurrentState { get; private set; }
 
-        public Point Position 
+        public Point Position
         {
 
             get => CurrentState.Position;
@@ -33,7 +28,7 @@ namespace MonoGameLibrary.Input
         }
         public Point PositionDelta => CurrentState.Position - PreviousState.Position;
 
-        public int XDelta => CurrentState.X - PreviousState.X; 
+        public int XDelta => CurrentState.X - PreviousState.X;
 
         public int YDelta => CurrentState.Y - PreviousState.Y;
 

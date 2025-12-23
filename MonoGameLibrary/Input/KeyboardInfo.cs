@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameLibrary.Input
 {
@@ -28,7 +22,7 @@ namespace MonoGameLibrary.Input
 
         public bool IsKeyDown(Keys key)
         {
-            return CurrentState.IsKeyDown(key) ;
+            return CurrentState.IsKeyDown(key);
         }
         public bool IsKeyUp(Keys key)
         {

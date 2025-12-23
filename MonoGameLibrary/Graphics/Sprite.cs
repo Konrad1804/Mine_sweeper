@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGameLibrary.Graphics
@@ -18,7 +13,7 @@ namespace MonoGameLibrary.Graphics
 
         public Vector2 Scale { get; set; } = Vector2.One;
 
-        public Vector2 Origin { get; set; } = Vector2.Zero; 
+        public Vector2 Origin { get; set; } = Vector2.Zero;
 
         public SpriteEffects Effects { get; set; } = SpriteEffects.None;
 

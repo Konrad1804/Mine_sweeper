@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using System;
 
 namespace MonoGameLibrary
 {
@@ -37,10 +37,11 @@ namespace MonoGameLibrary
             Radius = radius;
         }
 
-        public Circle(Point location, int radius) { 
-           X = location.X;
-           Y = location.Y;
-           Radius = radius;
+        public Circle(Point location, int radius)
+        {
+            X = location.X;
+            Y = location.Y;
+            Radius = radius;
         }
         public bool Intersects(Circle other)
         {
